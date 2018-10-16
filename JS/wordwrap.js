@@ -1,8 +1,20 @@
-var fileName = process.argv.length > 2 ? process.argv[2] : "";
+if (process.argv.length < 3)
+{
+  console.log("Please specify file name");
+  return;
+}
+
+var fileName = process.argv[2];
 
 var fs = require('fs');
 
 console.time('read_file');
+
+if (!fs.existsSync(fileName))
+{
+    console.log("File not found");
+    return;
+}
 
 var text = fs.readFileSync(fileName, 'ascii');
 
